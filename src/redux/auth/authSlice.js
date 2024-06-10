@@ -41,8 +41,7 @@ export const login = createAsyncThunk('auth/login', async (dataLogin) => {
 export const logout = createAsyncThunk('auth/logout', async (accessToken) => {
   try {
     await createApi(accessToken).post('/auth/logout')
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('persist:root')
+    localStorage.clear()
   } catch (error) {
     notification[NOTIFICATION_TYPE.error]({
       message: error.response.data.message,

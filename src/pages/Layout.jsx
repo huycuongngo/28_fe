@@ -1,7 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { getLoggedInUser } from '../redux/auth/authSlice'
+import { getLoggedInUser, logout } from '../redux/auth/authSlice'
+import { removeMovie, removeMovies } from '../redux/movie/movieSlice'
 
 function Layout() {
   const dispatch = useDispatch()
@@ -9,7 +10,13 @@ function Layout() {
   const user = useSelector(getLoggedInUser)
 
   const handleLogout = () => {
-    
+    if (confirm("Confirm logout")) {
+      dispatch(logout(localStorage.getItem('access_token')))
+      dispatch(removeMovies())
+      dispatch(removeMovie())
+
+      navigate('/login')
+    }
   }
 
   return (
@@ -18,34 +25,50 @@ function Layout() {
         backgroundColor: '#6366F1',
         padding: '30px 20px'
       }}>
-        <Link style={{
-          color: 'white'
-        }}
-          title='Home'
-          to={ 
-            user?.email ? "/" : "/login"
-          }
-          className='fa-solid fa-house'
-        />
-
-        {
-          user?.email ? (<div>
-            {
-              user?.role === "admin" &&
-              <Link
-                style={{
-                  color: 'white',
-                  cursor: 'pointer'
-                }}
-                title='Edit movie'
-                to='/admin' className='fa-solid fa-pen-to-square'
-              />
+        <div style={{
+          display: 'flex',
+          justifyContent:'space-between',
+          alignItems: 'center'
+        }}>
+          <Link style={{
+            color: 'white'
+          }}
+            title='Home'
+            to={
+              user?.email ? "/" : "/login"
             }
-            <button style={{
-              cursor: 'pointer'
-            }} title='logout' className='fa-solid fa-right-from-bracket' />
-          </div>) : (<></>)
-        }
+            className='fa-solid fa-house'
+          />
+
+          {
+            user?.email && (
+              <div style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                alignItems: 'center',
+                gap: 5
+              }}>
+                {
+                  user?.role === "admin" &&
+                  <Link
+                    style={{
+                      color: 'white',
+                      cursor: 'pointer'
+                    }}
+                    title='Edit movie'
+                    to='/admin' className='fa-solid fa-pen-to-square'
+                  />
+                }
+                <button
+                  title='logout'
+                  onClick={handleLogout}
+                  style={{ cursor: 'pointer' }}
+                  className='fa-solid fa-right-from-bracket'
+                />
+              </div>
+            )
+          }
+        </div>
       </header>
     </div>
   )
