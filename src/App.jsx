@@ -7,6 +7,7 @@ import MovieDetailPage from './pages/movie/MovieDetailPage'
 import DashboardAdmin from './pages/user/DashboardAdmin'
 import Login from './pages/user/Login'
 import Register from './pages/user/Register'
+import PageNotFound from './components/PageNotFound/PageNotFound'
 
 function App() {
 

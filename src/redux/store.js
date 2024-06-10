@@ -19,12 +19,14 @@ const persistConfig = {
 }
 
 // create persist reducer
-const persistReducer = persistReducer(persistConfig, rootReducer)
+const persistReducerRoot = persistReducer(persistConfig, rootReducer)
 
 // create redux store
 export const store = configureStore({
-  reducer: persistReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk)
+  reducer: persistReducerRoot,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false
+  }).concat(thunk)
 })
 
 // create persistor
