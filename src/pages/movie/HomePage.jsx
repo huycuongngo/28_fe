@@ -4,6 +4,7 @@ import { fetchAsyncMovies, getMovies } from '../../redux/movie/movieSlice'
 import { Spin, notification } from 'antd'
 import NOTIFICATION_TYPE from '../../constants'
 import MovieListing from '../../components/MovieListing/MovieListing'
+import './HomePage.scss'
 
 function HomePage() {
   const dispatch = useDispatch()
