@@ -57,7 +57,7 @@ const movieSlice = createSlice({
     removeMovies: (state) => {
       state.movies = []
     },
-    removeMovie: () => {
+    removeMovie: (state) => {
       state.movie = {}
     }
   },
