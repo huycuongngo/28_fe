@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchAsyncMovie, getMovie, removeMovie } from '../../redux/movie/movieSlice'
-import { notification } from 'antd'
+import { Spin, notification } from 'antd'
 import NOTIFICATION_TYPE from '../../constants'
 import './MovieDetailPage.scss'
+import MovieDetail from '../../components/MovieDetail/MovieDetail'
 
 function MovieDetailPage() {
   const dispatch = useDispatch()
@@ -44,7 +45,20 @@ function MovieDetailPage() {
   return (
     <section>
       <h1 className='title'>Movie</h1>
-      
+      {
+        Object.keys(movie).length === 0 ? (<div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh'
+          }}
+        >
+          <Spin />
+        </div>) : (<>
+          <MovieDetail movie={movie} />
+        </>)
+      }
     </section>
   )
 }

@@ -2,10 +2,15 @@
 
 .movie-section {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 50px;
   padding: 40px 0;
   color: $secondary-color;
   font-weight: 400;
+}
+
+.section-left {
+  max-width: 500px;
 }
 
 .movie-title {

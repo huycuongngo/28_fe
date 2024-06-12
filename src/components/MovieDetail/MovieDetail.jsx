@@ -1,4 +1,5 @@
 import React from 'react'
+import './MovieDetail.scss'
 
 function MovieDetail({ movie }) {
   const { title, year, poster } = movie
