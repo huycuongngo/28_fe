@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { getLoggedInUser, logout } from '../redux/auth/authSlice'
 import { removeMovie, removeMovies } from '../redux/movie/movieSlice'
 
@@ -20,7 +20,7 @@ function Layout() {
   }
 
   return (
-    <div>
+    <>
       <header style={{
         backgroundColor: '#6366F1',
         padding: '30px 20px'
@@ -70,7 +70,13 @@ function Layout() {
           }
         </div>
       </header>
-    </div>
+
+      <main style={{
+        padding: "30px 20px"
+      }}>
+        <Outlet />
+      </main>
+    </>
   )
 }
 
