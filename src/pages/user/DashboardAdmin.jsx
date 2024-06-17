@@ -4,7 +4,7 @@ import { getMovies } from '../../redux/movie/movieSlice'
 import CreateMovie from '../../components/CreateMovie/CreateMovie'
 import UpdateMovie from '../../components/UpdateMovie/UpdateMovie'
 import { TABLE_HEADER_CONTENTS } from '../../constants'
-
+import './DashboardAdmin.scss'
 
 function DashboardAdmin() {
   const dispatch = useDispatch()
@@ -38,33 +38,34 @@ function DashboardAdmin() {
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
-          gridGap: 10
+          gridGap: 10,
+          padding: 10,
+          color: 'black',
+          border: '1px solid gray'
         }}>
           {TABLE_HEADER_CONTENTS.map(content => <p className='table-header-item' key={content}>{content}</p>)}
-          {/* <p>Id</p>
-          <p>Title</p>
-          <p>Year</p>
-          <p>Poster</p>
-          <p>Action</p> */}
         </div>
 
         <>
           {
             movies.length && movies.map(movie => {
-              const {_id, title, year, poster} = movie
+              const { _id, title, year, poster } = movie
               return (
                 <div key={_id} style={{
                   display: 'grid',
                   gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
-                  gridGap: 10
+                  gridGap: 10,
+                  padding: 10,
+                  color: 'black',
+                  border: '1px solid gray'
                 }}>
                   <p className='table-body-item'>{_id}</p>
                   <p className='table-body-item'>{title}</p>
                   <p className='table-body-item'>{year}</p>
                   <p className='table-body-item'>
-                    <img src={poster} alt="movie-poster" />
+                    <img src={poster} alt="movie-poster" className='movie-poster'/>
                   </p>
-                  <p className='table-body-item'> 
+                  <p className='table-body-item'>
                     <button style={{
                       cursor: 'pointer',
                       padding: 3
