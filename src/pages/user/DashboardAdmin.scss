@@ -15,6 +15,14 @@
 }
 
 .table-body-item {
-  border: '1px solid gray';
+  border: 1px solid gray;
   padding: 10px;
+}
+
+.movie-poster {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid white;
 }
